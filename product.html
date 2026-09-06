@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product | Awee Venda</title>
+<style>
+:root{--bg:#050505;--card:#111;--text:#fff;--muted:#aaa;--border:#2a2a2a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 8%;border-bottom:1px solid var(--border)}
+.logo-container{display:flex;align-items:center;gap:12px}.header-logo{height:48px;width:48px;object-fit:cover;border-radius:6px}.logo-text{font-size:20px;font-weight:800;letter-spacing:2px}
+.back-link{color:var(--muted);font-size:13px;font-weight:bold;text-transform:uppercase}
+main{max-width:1100px;margin:auto;padding:70px 8%}
+.product-page{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:70px;align-items:center}
+.product-image{width:100%;aspect-ratio:1/1;object-fit:cover;border:1px solid var(--border);border-radius:12px}
+.product-info h1{font-size:clamp(36px,5vw,62px);line-height:1.05;margin-bottom:18px}.eyebrow{font-size:12px;letter-spacing:2px;color:var(--muted);font-weight:bold;text-transform:uppercase;margin-bottom:14px}.description{color:var(--muted);font-size:17px;margin-bottom:24px}.price{font-size:28px;font-weight:bold;margin-bottom:28px}
+.size-label{display:block;color:var(--muted);font-size:12px;font-weight:bold;margin-bottom:8px;text-transform:uppercase}.size-select{width:100%;padding:14px;background:#050505;color:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:16px}.quantity-input{width:100%;padding:14px;background:#050505;color:#fff;border:1px solid var(--border);border-radius:6px;margin-bottom:16px}
+.order-button{width:100%;padding:15px;background:#fff;color:#050505;border:0;border-radius:6px;font-weight:bold;font-size:15px;cursor:pointer}.order-button:hover{background:#ddd}
+.note{color:var(--muted);font-size:13px;margin-top:18px}
+@media(max-width:700px){header{padding:14px 5%;}.product-page{grid-template-columns:1fr;gap:35px}main{padding:45px 5%}.product-info h1{font-size:42px}}
+</style>
+</head>
+<body>
+<header>
+<a href="awee_venda.html" class="logo-container"><img src="logo.jpg" alt="Awee Venda Logo" class="header-logo"><span class="logo-text">AWEE VENDA</span></a>
+<a href="awee_venda.html#shop" class="back-link">Back to shop</a>
+</header>
+<main>
+<section class="product-page">
+<img class="product-image" id="productImage" src="hope-faith-hoodie.jpg" alt="">
+<div class="product-info">
+<div class="eyebrow">AV Clothing Collection</div>
+<h1 id="productName"></h1>
+<p class="description" id="productDescription"></p>
+<div class="price" id="productPrice"></div>
+<label class="size-label" for="size">Choose your size</label>
+<select class="size-select" id="size"></select>
+<label class="size-label" for="color">Choose your colour</label>
+<select class="size-select" id="color"></select>
+<label class="size-label" for="quantity">Number of items</label>
+<input class="quantity-input" id="quantity" type="number" min="1" max="20" value="1">
+<button class="order-button" onclick="addToCart()">Add to Cart</button>
+<p class="note">Choose your size, colour, and quantity before adding this product to your cart.</p>
+</div>
+</section>
+</main>
+<script>
+const products={
+ 'hope-faith-hoodie':{name:'Hope & Faith Graphic Hoodie',image:'hope-faith-hoodie.jpg',description:'Premium black fleece hoodie with bold faith-forward artwork and signature AV branding.',price:750,sizes:['S','M','L','XL','XXL']},
+ 'hope-faith-back-tee':{name:'Hope Faith Back Print Tee',image:'hope-faith-back-tee.jpg',description:'White heavyweight tee with bold blue back artwork and AV branding.',price:350,sizes:['S','M','L','XL','XXL']},
+ 'blessed-duo-tee':{name:'Blessed Duo Tee',image:'blessed-duo-tee.jpg',description:'Black and white graphic tees featuring the AV Blessed design.',price:350,sizes:['S','M','L','XL','XXL']},
+ 'hope-faith-collection-tee':{name:'Hope Faith Collection Tee',image:'hope-faith-collection-tee.jpg',description:'Statement black tee with Hope Faith artwork for an expressive streetwear look.',price:350,sizes:['S','M','L','XL','XXL']},
+ 'av-blue-cap':{name:'AV Blue Signature Cap',image:'av-blue-cap.jpg',description:'Electric blue cap with embroidered AV branding and an adjustable fit.',price:250,sizes:['One Size']}
+};
+const colors=['Black','White','Blue','Red','Green','Yellow','Grey','Orange','Pink','Purple'];
+const product=products[new URLSearchParams(window.location.search).get('product')]||products['hope-faith-hoodie'];
+document.title=product.name+' | Awee Venda';
+document.getElementById('productImage').src=product.image;
+document.getElementById('productImage').alt=product.name;
+document.getElementById('productName').textContent=product.name;
+document.getElementById('productDescription').textContent=product.description;
+document.getElementById('productPrice').textContent='R'+product.price;
+document.getElementById('size').innerHTML=product.sizes.map(size=>'<option value="'+size+'">Size '+size+'</option>').join('');
+document.getElementById('color').innerHTML=colors.map(color=>'<option value="'+color+'">'+color+'</option>').join('');
+function addToCart(){
+ const size=document.getElementById('size').value;
+ const color=document.getElementById('color').value;
+ const quantity=Math.max(1,Math.min(20,parseInt(document.getElementById('quantity').value,10)||1));
+ const cart=JSON.parse(localStorage.getItem('aweeVendaCart')||'[]');
+ cart.push({name:product.name,price:product.price,size,color,quantity});
+ localStorage.setItem('aweeVendaCart',JSON.stringify(cart));
+ window.location.href='awee_venda.html#checkout';
+}
+</script>
+</body>
+</html>

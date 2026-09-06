@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">Awee Venda logo</title>
+  <desc id="desc">Black AV monogram with Awee Venda lettering</desc>
+  <rect width="600" height="600" fill="#fff"/>
+  <g fill="#000">
+    <rect x="294" y="72" width="12" height="456" rx="6"/>
+    <path d="M116 267 190 104h31l74 163h-40l-15-36h-72l-15 36zm66-70h45l-22-54z"/>
+    <path d="M326 104h43l40 108 40-108h43l-66 163h-34z"/>
+    <rect x="117" y="292" width="366" height="72" rx="4" fill="#fff"/>
+    <text x="300" y="338" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" font-weight="600" letter-spacing="5">AWEE VENDA!!</text>
+    <path d="M116 408h43l38-91 38 91h-43l-14-34-14 34z"/>
+    <path d="M365 317h43l-43 91h-34l-43-91h43l17 43z"/>
+  </g>
+</svg>
