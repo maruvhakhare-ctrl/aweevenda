@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Awee Venda | AV Clothing</title>
+<style>
+:root{--bg:#050505;--card:#111;--text:#fff;--muted:#aaa;--border:#2a2a2a}
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.announcement-bar{background:#fff;color:#050505;text-align:center;padding:10px;font-size:13px;font-weight:bold;letter-spacing:1px}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 8%;background:rgba(13,15,18,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+.logo-container{display:flex;align-items:center;gap:12px}
+.header-logo{height:48px;width:48px;object-fit:cover;border-radius:6px}
+.logo-text{font-size:20px;font-weight:800;letter-spacing:2px}
+nav ul{display:flex;list-style:none;gap:25px}
+nav a{font-size:13px;font-weight:bold;text-transform:uppercase;color:var(--muted)}
+.hero{min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 20px;background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.12),#050505 70%)}
+.hero-logo-display{width:140px;height:140px;margin-bottom:24px;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px #000;border:1px solid #444}
+.hero-logo-display img{width:100%;height:100%;object-fit:cover}
+.hero-badge{padding:6px 16px;border:1px solid #fff;color:#fff;border-radius:30px;font-size:12px;font-weight:bold;margin-bottom:20px}
+.hero h1{font-size:clamp(40px,7vw,72px);line-height:1.1;margin-bottom:20px}
+.hero p{max-width:600px;color:var(--muted);font-size:18px;margin-bottom:30px}
+.btn-primary,.btn-card,.checkout-btn{border:0;cursor:pointer;font-weight:bold;border-radius:6px}
+.btn-primary{display:inline-block;padding:15px 30px;background:#f3f4f6;color:#0d0f12}
+section{padding:80px 8%}
+.about-section,.contact-section{background:#090a0c;border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center}
+.about-section h2{font-size:13px;text-transform:uppercase;color:#fff;letter-spacing:2px}
+.about-section h3,.section-header h2,.contact-section h2{font-size:35px;margin:10px 0 20px}
+.about-section p{max-width:700px;margin:auto;color:var(--muted);font-size:17px}
+.values-list{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
+.value-tag{padding:8px 18px;border:1px solid var(--border);border-radius:30px;background:var(--card);font-size:12px;font-weight:bold}
+.lookbook-section{padding:30px 8% 80px;background:#090a0c}
+.lookbook-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1100px;margin:auto}
+.lookbook-image{height:420px;overflow:hidden;border:1px solid var(--border);border-radius:12px}
+.lookbook-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .5s ease}
+.lookbook-image:first-child img{object-position:center 62%}
+.lookbook-image:last-child img{object-position:center 48%}
+.lookbook-image:hover img{transform:scale(1.04)}
+.section-header{text-align:center;margin-bottom:45px}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.product-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.image-wrapper{height:300px;background:#1a1a1a}
+.product-card img{width:100%;height:100%;object-fit:cover}
+.product-info{padding:22px}
+.product-info h3{margin-bottom:8px}
+.product-info p{color:var(--muted);font-size:14px;margin-bottom:18px}
+.price{font-size:20px;font-weight:bold;margin-bottom:15px}
+.size-select,.qty-input,.customer-form input,.customer-form textarea,.customer-form select{width:100%;padding:12px;background:#0d0f12;color:white;border:1px solid var(--border);border-radius:6px;margin-bottom:12px}
+.btn-card{width:100%;padding:12px;background:#fff;color:#050505}
+.product-link{display:block;margin-top:10px;padding:11px;text-align:center;border:1px solid var(--border);color:var(--text);font-size:13px;font-weight:bold;border-radius:6px}
+.cart{margin-top:50px;background:#090a0c;border:1px solid var(--border);padding:25px;border-radius:12px}
+.cart h3{margin-bottom:15px}
+.cart-item{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.remove{background:#333;color:#fff;border:0;padding:5px 9px;border-radius:4px;cursor:pointer}
+.total{text-align:right;font-size:20px;font-weight:bold;margin:20px 0}
+.customer-form{max-width:650px;margin:25px auto 0}
+.customer-form h3{margin:20px 0 10px}
+.checkout-btn{width:100%;padding:15px;background:#fff;color:#050505;font-size:16px}
+.contact-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:900px;margin:auto}
+.contact-item{background:var(--card);border:1px solid var(--border);padding:22px;border-radius:10px}
+.contact-item span{display:block;color:var(--muted);font-size:12px;font-weight:bold;margin-bottom:6px}
+footer{text-align:center;padding:30px;color:var(--muted);font-size:13px}
+@media(max-width:700px){header{flex-direction:column;gap:15px}nav ul{gap:15px}.hero h1{font-size:42px}section{padding:60px 5%}}
+</style>
+</head>
+<body>
+
+<div class="announcement-bar">Built on Faith • Est. 19 December 2025 • Free Local Pickup Available</div>
+
+<header>
+<a href="#" class="logo-container">
+<img src="logo.jpg" alt="Awee Venda Logo" class="header-logo">
+<span class="logo-text">AWEE VENDA</span>
+</a>
+<nav><ul><li><a href="#shop">Shop</a></li><li><a href="#about">Our Story</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+</header>
+
+<section class="hero">
+<div class="hero-logo-display"><img src="logo.jpg" alt="Awee Venda"></div>
+<span class="hero-badge">AV.CLOTHING COLLECTION</span>
+<h1>HOPE CAN BE WORN</h1>
+<p>Your beginning doesn't decide your ending. Streetwear crafted with faith, purpose, and identity.</p>
+<a href="#shop" class="btn-primary">Explore Collection</a>
+</section>
+
+<section class="about-section" id="about">
+<h2>Our Movement</h2><h3>Built From Faith</h3>
+<p>Started on the 19th of December 2025 in a rural community with nothing but hope and vision. AV.Clothing is a streetwear movement reminding people to keep believing—even when starting small.</p>
+<div class="values-list"><span class="value-tag">Hope</span><span class="value-tag">Faith</span><span class="value-tag">Resilience</span><span class="value-tag">Authenticity</span><span class="value-tag">Believe</span></div>
+</section>
+
+<section class="lookbook-section" aria-label="AV Clothing lookbook">
+<div class="lookbook-grid">
+<div class="lookbook-image"><img src="lookbook-01.jpg" alt="AV Clothing lifestyle lookbook image"></div>
+<div class="lookbook-image"><img src="lookbook-02.jpg" alt="AV Clothing streetwear lifestyle lookbook image"></div>
+</div>
+</section>
+
+<section id="shop">
+<div class="section-header"><h2>STREETWEAR DROP</h2></div>
+<div class="product-grid">
+
+<div class="product-card">
+<div class="image-wrapper"><img src="hope-faith-hoodie.jpg" alt="Hope and Faith Graphic Hoodie"></div>
+<div class="product-info"><h3>Hope &amp; Faith Graphic Hoodie</h3><p>Premium black fleece hoodie with bold faith-forward artwork and AV branding.</p><div class="price">R750</div>
+<select class="size-select" id="size4"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option><option value="XXL">Size XXL</option></select>
+<button class="btn-card" onclick="addToCart('Hope &amp; Faith Graphic Hoodie',750,'size4')">Add to Cart</button>
+<a class="product-link" href="product.html?product=hope-faith-hoodie">View Product</a></div>
+</div>
+
+<div class="product-card">
+<div class="image-wrapper"><img src="hope-faith-back-tee.jpg" alt="Hope Faith Back Print Tee"></div>
+<div class="product-info"><h3>Hope Faith Back Print Tee</h3><p>White heavyweight tee with bold blue back artwork and AV branding.</p><div class="price">R350</div>
+<select class="size-select" id="size5"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option><option value="XXL">Size XXL</option></select>
+<button class="btn-card" onclick="addToCart('Hope Faith Back Print Tee',350,'size5')">Add to Cart</button>
+<a class="product-link" href="product.html?product=hope-faith-back-tee">View Product</a></div>
+</div>
+
+<div class="product-card">
+<div class="image-wrapper"><img src="blessed-duo-tee.jpg" alt="Blessed Duo Tee"></div>
+<div class="product-info"><h3>Blessed Duo Tee</h3><p>Black and white graphic tees featuring the AV Blessed design.</p><div class="price">R350</div>
+<select class="size-select" id="size6"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option><option value="XXL">Size XXL</option></select>
+<button class="btn-card" onclick="addToCart('Blessed Duo Tee',350,'size6')">Add to Cart</button>
+<a class="product-link" href="product.html?product=blessed-duo-tee">View Product</a></div>
+</div>
+
+<div class="product-card">
+<div class="image-wrapper"><img src="hope-faith-collection-tee.jpg" alt="Hope Faith Collection Tee"></div>
+<div class="product-info"><h3>Hope Faith Collection Tee</h3><p>Statement black tee with Hope Faith artwork for an expressive streetwear look.</p><div class="price">R350</div>
+<select class="size-select" id="size7"><option value="S">Size S</option><option value="M">Size M</option><option value="L">Size L</option><option value="XL">Size XL</option><option value="XXL">Size XXL</option></select>
+<button class="btn-card" onclick="addToCart('Hope Faith Collection Tee',350,'size7')">Add to Cart</button>
+<a class="product-link" href="product.html?product=hope-faith-collection-tee">View Product</a></div>
+</div>
+
+<div class="product-card">
+<div class="image-wrapper"><img src="av-blue-cap.jpg" alt="AV Blue Cap"></div>
+<div class="product-info"><h3>AV Blue Signature Cap</h3><p>Electric blue cap with embroidered AV branding and an adjustable fit.</p><div class="price">R250</div>
+<select class="size-select" id="size8"><option value="One Size">One Size</option></select>
+<button class="btn-card" onclick="addToCart('AV Blue Signature Cap',250,'size8')">Add to Cart</button>
+<a class="product-link" href="product.html?product=av-blue-cap">View Product</a></div>
+</div>
+
+</div>
+
+<div class="cart" id="checkout">
+<h3>🛒 Your Cart</h3>
+<div id="cartItems"><p style="color:#9ca3af">Your cart is empty.</p></div>
+<div class="total">Total: R<span id="cartTotal">0</span></div>
+
+<div class="customer-form">
+<h3>Customer Details</h3>
+<input id="customerName" placeholder="Full Name" required>
+<input id="customerPhone" placeholder="Phone Number" required>
+<input id="customerEmail" type="email" placeholder="Email Address">
+<textarea id="customerAddress" rows="3" placeholder="Delivery Address"></textarea>
+<select id="delivery">
+<option value="Free Local Pickup">Free Local Pickup</option>
+<option value="Delivery">Delivery</option>
+</select>
+<button class="checkout-btn" onclick="sendOrder()">Place Order via WhatsApp</button>
+</div>
+</div>
+</section>
+
+<section class="contact-section" id="contact">
+<h2>Get In Touch</h2><p style="color:#9ca3af;margin-bottom:30px">Questions or want to order directly? Contact AV.Clothing.</p>
+<div class="contact-links">
+<div class="contact-item"><span>WhatsApp</span><a href="https://wa.me/27752619401" target="_blank">075-261-9401</a></div>
+<div class="contact-item"><span>Instagram</span><a href="https://instagram.com/Ntwana_esgodini" target="_blank">@Ntwana_esgodini</a></div>
+<div class="contact-item"><span>Email</span><a href="mailto:AweeVenda@gmail.com">AweeVenda@gmail.com</a></div>
+</div>
+</section>
+
+<footer>&copy; 2026 Awee Venda (AV.Clothing). All Rights Reserved.</footer>
+
+<script>
+let cart=JSON.parse(localStorage.getItem('aweeVendaCart')||'[]').map(item=>({...item,color:item.color||'Default',quantity:item.quantity||1}));
+
+function addToCart(name,price,sizeId){
+ const size=document.getElementById(sizeId).value;
+ cart.push({name,price,size,color:'Default',quantity:1});
+ localStorage.setItem('aweeVendaCart',JSON.stringify(cart));
+ renderCart();
+ document.getElementById('checkout').scrollIntoView({behavior:'smooth'});
+}
+
+function removeItem(index){
+ cart.splice(index,1);
+ localStorage.setItem('aweeVendaCart',JSON.stringify(cart));
+ renderCart();
+}
+
+function renderCart(){
+ const box=document.getElementById('cartItems');
+ if(cart.length===0){
+   box.innerHTML='<p style="color:#9ca3af">Your cart is empty.</p>';
+ }else{
+   box.innerHTML=cart.map((item,i)=>
+    `<div class="cart-item"><span>${i+1}. ${item.name} — ${item.size} — ${item.color}<br>Qty: ${item.quantity} | R${item.price*item.quantity}</span><button class="remove" onclick="removeItem(${i})">Remove</button></div>`
+   ).join('');
+ }
+ document.getElementById('cartTotal').textContent=cart.reduce((sum,item)=>sum+(item.price*item.quantity),0);
+}
+
+function sendOrder(){
+ if(cart.length===0){alert('Please add at least one product to your cart.');return;}
+ const name=document.getElementById('customerName').value.trim();
+ const phone=document.getElementById('customerPhone').value.trim();
+ const email=document.getElementById('customerEmail').value.trim();
+ const address=document.getElementById('customerAddress').value.trim();
+ const delivery=document.getElementById('delivery').value;
+
+ if(!name || !phone){alert('Please enter your name and phone number.');return;}
+
+ let message='Hello Awee Venda! I would like to place an order.%0A%0A';
+ message+='*Customer Details*%0A';
+ message+='Name: '+encodeURIComponent(name)+'%0A';
+ message+='Phone: '+encodeURIComponent(phone)+'%0A';
+ if(email) message+='Email: '+encodeURIComponent(email)+'%0A';
+ if(address) message+='Address: '+encodeURIComponent(address)+'%0A';
+ message+='Order Type: '+encodeURIComponent(delivery)+'%0A%0A';
+ message+='*Order*%0A';
+
+ cart.forEach((item,i)=>{
+  message+=(i+1)+'. '+encodeURIComponent(item.name)+' | Size: '+encodeURIComponent(item.size)+' | Colour: '+encodeURIComponent(item.color)+' | Qty: '+item.quantity+' | R'+(item.price*item.quantity)+'%0A';
+ });
+ const total=cart.reduce((sum,item)=>sum+(item.price*item.quantity),0);
+ message+='%0A*Total: R'+total+'*';
+
+ window.open('https://wa.me/27752619401?text='+message,'_blank');
+}
+
+renderCart();
+</script>
+</body>
+</html>
